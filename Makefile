@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/02 05:42:29 by bsautron          #+#    #+#              #
-#    Updated: 2015/05/02 09:11:59 by bsautron         ###   ########.fr        #
+#    Updated: 2015/05/02 09:15:32 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ = $(SRC:%.c=.obj/%.o)
 all: dor libs $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) -o $@ $^ $(LIB) -lglfw -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+	@$(CC) -o $@ $^ $(LIB) -L./glfw-build/lib -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 	@echo "\033[32mReady!\033[0m"
 
 dor:
