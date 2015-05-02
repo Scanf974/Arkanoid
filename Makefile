@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/02 05:42:29 by bsautron          #+#    #+#              #
-#    Updated: 2015/05/02 08:17:39 by bsautron         ###   ########.fr        #
+#    Updated: 2015/05/02 08:38:24 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,9 @@ libs:
 	@make -C libft/
 	@git submodule init
 	@git submodule update
-	@cmake glfw
-	@make -C glfw
+	@mkdir glfw-build 2> /dev/null || env -i
+	@cd glfw-build ; cmake ../glfw
+	@make -C glfw-build
 
 .obj/%.o: %.c $(HEADER)
 	@echo "\033[33m 	$<"
