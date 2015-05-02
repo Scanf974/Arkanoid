@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 05:47:03 by bsautron          #+#    #+#             */
-/*   Updated: 2015/05/02 13:55:39 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/05/02 14:42:21 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,38 @@ void		ft_rectangle(t_env *env, float x, float y)
 	h = (float)env->height;
 	w = (float)env->width;
 	glBegin(GL_QUADS);
-	glVertex2f(x + 0.2, y);
-	glVertex2f(x, y);
-	glVertex2f(x, y + 0.2);
-	glVertex2f(x + 0.2, y + 0.2);
+	glVertex2f(x / w / 2 + 0.2, y / h / 2);
+	glVertex2f(x / w / 2, y / h / 2);
+	glVertex2f(x / w / 2, y / h / 2 + 0.2);
+	glVertex2f(x / w / 2 + 0.2, y / h / 2 + 0.2);
 	glEnd();
+}
+
+void		ft_getmap(t_env *env, char *level)
+{
+	char	*line;
+	int		nb;
+	int		fd;
+	int		i;
+
+	nb = 0;
+	fd = open(level, O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
+	{
+		free(line);
+		nb++;
+	}
+	close(fd);
+	env->map = (char **)malloc(sizeof(char *) * (nb + 1));
+	fd = open(level, O_RDONLY);
+	i = 0;
+	while (get_next_line(fd, &line) > 0)
+	{
+		env->map[i++] = ft_strdup(line);
+		free(line);
+	}
+	env->map[i] = NULL;
+	close(fd);
 }
 
 int			main(void)
@@ -72,6 +99,7 @@ int			main(void)
 	GLuint		vs;
 	t_env		env;
 
+	ft_getmap(&env, "./levels/one.txt");
 	env.ball.radius = 0.03;
 	env.bar.h = 10;
 	env.bar.w = 50;
@@ -103,7 +131,7 @@ int			main(void)
 
 		ft_render(&env);
 		ft_ball(&env);
-		ft_rectangle(&env, 0.5f, 0.6f);
+		ft_rectangle(&env, 500.f, -800.f);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
