@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/02 05:42:29 by bsautron          #+#    #+#              #
-#    Updated: 2015/05/02 08:38:24 by bsautron         ###   ########.fr        #
+#    Updated: 2015/05/02 09:11:59 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ HEADER = $(DIR_H)/arkanoid.h \
 		 $(DIR_H)/libft.h \
 		 $(DIR_H)/get_next_line.h
 OBJ = $(SRC:%.c=.obj/%.o)
-CFLAGS = -Wextra -Wall -Werror
-LIB = -L./libft -lft
+	CFLAGS = -Wextra -Wall -Werror
+	LIB = -L./libft -lft
 
 .PHONY: all libs clean fclean re
 
@@ -36,13 +36,12 @@ libs:
 	@make -C libft/
 	@git submodule init
 	@git submodule update
-	@mkdir glfw-build 2> /dev/null || env -i
-	@cd glfw-build ; cmake ../glfw
-	@make -C glfw-build
+	@cd glfw ; cmake -DCMAKE_INSTALL_PREFIX=../glfw-build
+	@make -C glfw install
 
 .obj/%.o: %.c $(HEADER)
 	@echo "\033[33m 	$<"
-	@$(CC) -o $@ -I includes/ -I glfw/include/ -c $< -g
+	@$(CC) -o $@ -I includes/ -I glfw-build/include/ -c $< -g
 
 clean:
 	rm -f $(OBJ)
