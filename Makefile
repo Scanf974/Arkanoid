@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/02 05:42:29 by bsautron          #+#    #+#              #
-#    Updated: 2015/05/02 05:44:29 by bsautron         ###   ########.fr        #
+#    Updated: 2015/05/02 06:59:24 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ dor:
 
 libs:
 	@make -C libft/
+	git submodule init
+	git submodule update
 
 .obj/%.o: %.c $(HEADER)
 	@echo "\033[33m 	$<"
