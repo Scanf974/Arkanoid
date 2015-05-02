@@ -6,13 +6,14 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 05:49:08 by bsautron          #+#    #+#             */
-/*   Updated: 2015/05/02 05:49:12 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/05/02 08:03:40 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARKANOID_H
 # define ARKANOID_H
 
+# include <GLFW/glfw3.h>
 # include <libft.h>
 
 #endif

@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/05/02 05:42:29 by bsautron          #+#    #+#              #
-#    Updated: 2015/05/02 06:59:24 by bsautron         ###   ########.fr        #
+#    Updated: 2015/05/02 08:17:39 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIB = -L./libft -lft
 all: dor libs $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) -o $@ $^ $(LIB)
+	@$(CC) -o $@ $^ $(LIB) -lglfw -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 	@echo "\033[32mReady!\033[0m"
 
 dor:
@@ -34,12 +34,14 @@ dor:
 
 libs:
 	@make -C libft/
-	git submodule init
-	git submodule update
+	@git submodule init
+	@git submodule update
+	@cmake glfw
+	@make -C glfw
 
 .obj/%.o: %.c $(HEADER)
 	@echo "\033[33m 	$<"
-	@$(CC) -o $@ -I includes/ -c $< -g
+	@$(CC) -o $@ -I includes/ -I glfw/include/ -c $< -g
 
 clean:
 	rm -f $(OBJ)
