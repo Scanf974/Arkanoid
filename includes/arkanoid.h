@@ -6,7 +6,7 @@
 /*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/02 05:49:08 by bsautron          #+#    #+#             */
-/*   Updated: 2015/05/02 08:03:40 by bsautron         ###   ########.fr       */
+/*   Updated: 2015/05/02 13:48:43 by bsautron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,35 @@
 
 # include <GLFW/glfw3.h>
 # include <libft.h>
+# include <math.h>
+# include <stdio.h>///////////////////////////////////
+////////////////////////////////////////////////////
+
+typedef struct		s_pt2d
+{
+	int		x;
+	int		y;
+}					t_pt2d;
+
+typedef struct		s_ball
+{
+	t_pt2d		pos;
+	float		radius;
+}					t_ball;
+
+typedef struct		s_bar
+{
+	t_pt2d		pos;
+	float		h;
+	float		w;
+}					t_bar;
+
+typedef struct		s_env
+{
+	int			height;
+	int			width;
+	t_ball		ball;
+	t_bar		bar;
+}					t_env;
 
 #endif
-
